@@ -51,6 +51,15 @@ Config.SA 			= SA;
 Algorithm.SA		= @SimulatedAnnealing;
 clear SA;
 
+%%% Tabu Search algorithm configuration. (TS)         
+TS.neighbourSize    = 25;						% neighbour size
+TS.tabuSize         = 20;						% tabu talbe size
+TS.maxIteration     = Config.GA.maxIteration; 	% maximal number of iteration
+
+Config.TS           = TS;
+Algorithm.TS        = @TabuSearch;
+clear TS;
+
 names = fieldnames(Config);
 
 for i = 1:length(names)
