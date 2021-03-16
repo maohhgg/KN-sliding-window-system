@@ -4,7 +4,7 @@ addpath(genpath(pwd));
 %%% configuration.
 RM.AStar					= 0.85;                                                  % pre-specified system availability requirement
 RM.interval					= [4 6 10 18 30 50 80 120];                              % Replacement interval
-RM.maxReplacementInterval	= length(RM.interval);                                   % maximal number of replacement interval choices              
+RM.maxReplacementInterval   = length(RM.interval);                                   % maximal number of replacement interval choices              
 RM.replacementTime			= 0.001*[6 8 7 8 6 8 9 11 12 11];                        % replacement time
 RM.systemLifetime			= 120;                                                   % System lifetime 
 RM.replacementCost			= [24 29 37 44 49 55 58 64 71 76];                       % replacement cost
@@ -41,12 +41,21 @@ Config.GA 			= GA;
 Algorithm.GA		= @GeneticAlgorithm;
 claer GA;
 
+%%% Simulated Annealing algorithm configuration.
+SA.initialTemp		= 100;             % initial temperature
+SA.miniTemp			= 0.1^2;           % lower bound of temperature
+SA.maxLoop			= 25;              % number of iterations
+SA.delta			= 0.98;            % temperature drop rate
+
+Config.SA 			= SA;
+Algorithm.SA		= @SimulatedAnnealing;
+clear SA;
 
 names = fieldnames(Config);
 
 for i = 1:length(names)
-	field = string(names(i));
-	[Excel.(field), Images.(field)] = Algorithm.(field)(SWS, RM, Config.(field));
+    field = string(names(i));
+    [Excel.(field), Images.(field)] = Algorithm.(field)(SWS, RM, Config.(field));
 end
 
 SaveExcel(Excel, SWS, RM)
