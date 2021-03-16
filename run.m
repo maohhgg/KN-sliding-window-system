@@ -60,6 +60,18 @@ Config.TS           = TS;
 Algorithm.TS        = @TabuSearch;
 clear TS;
 
+%%% Particle Swarm Optimization algorithm configuration (PSO)
+PSO.populationSize  = 25;              % population size
+PSO.maxIteration    = Config.GA.maxIteration; 	% maximal number of iteration
+PSO.limit           = [0, SWS.m * RM.maxReplacementInterval]; % Populations of upper and lower boundary values
+PSO.speedLimit      = [-1, 1]; 
+PSO.learningFactor  = [1.49445, 1.49445];   % learning factor
+PSO.inertness       = 0.8;                  % %w = omega      
+
+Config.PSO          = PSO;
+Algorithm.PSO       = @ParticleSwarmOptimization;
+clear PSO;
+
 names = fieldnames(Config);
 
 for i = 1:length(names)
