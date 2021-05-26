@@ -20,7 +20,7 @@ function [excel, image] = GeneticAlgorithm(SWS, RM, GA)
         [fitness, index, best] = Fitness(GA, SWS, RM);
 
         %%% 2.5 Record the best individual.
-        [excel, image] = RecordLog(iteration, fitness, index, best, excel, image);
+        [excel, image] = RecordLog(iteration, fitness, index, best, excel, image, 'GeneticAlgorithm');
         
         %%% 3. Selection
         for i = 1:parentsSize
@@ -36,12 +36,13 @@ function [excel, image] = GeneticAlgorithm(SWS, RM, GA)
 %             pop(index(20-i-1), :) = children(2, :);
 %             i = i + 2; 
 %         end
-        
+        backLen = ceil(GA.populationSize / 2);
         for i = 1:parentsSize/2
             children    = CrossOver(parents, parentsFitness, parentsSize, SWS.m);
             pop(i,:)    = children(1, :);
-            pop(i+10,:) = children(2, :);
+            pop(i+backLen,:) = children(2, :);
         end
+        clear backLen;
 
         %%% 5: Mutation
         Mutation(GA);

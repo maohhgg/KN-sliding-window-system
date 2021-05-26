@@ -25,28 +25,28 @@ C = [2,3,4,4,6,7,7,8,8,10];
 [~, m] = size(C);           % the number of MEs
 % 
 % disp(Reliability(G, m, C, r, W, k, 'uneven'));
+W = [0.2 10; 0.8 15];   
+R = Reliability(k, r, m, W, G, C, 'even');
+% max = 5; % max 
+% one = cell(max-r, 1);
+% i = 1;
+% for k = k : max
+%     R = 1; RS = []; WS = []; W = 0;
+%     while R > 0
+%         R = Reliability(k, r, m, W, G, c, 'even');
+%         RS(end+1) = R; WS(end+1) = W;
+%         W = W + 1;
+%     end
+%     one{i,1} = RS;
+%     one{i,2} = WS;
+%     i = i + 1;
+% end
 
-
-max = 5; % max 
-one = cell(max-r, 1);
-i = 1;
-for k = k : max
-    R = 1; RS = []; WS = []; W = 0;
-    while R > 0
-        R = Reliability(G, m, C, r, W, k, 'uneven');
-        RS(end+1) = R; WS(end+1) = W;
-        W = W + 1;
-    end
-    one{i,1} = RS;
-    one{i,2} = WS;
-    i = i + 1;
-end
-
-figure;
-ylabel('R');xlabel('W');
-[len, ~] = size(one); str = cell(len, 1);
-for i = 1:len
-    stairs(one{i,2}, one{i,1});    hold on;
-    str{i} = sprintf('k = %d, r = %d', k-len+i, r);
-end
-legend(str);
+% figure;
+% ylabel('R');xlabel('W');
+% [len, ~] = size(one); str = cell(len, 1);
+% for i = 1:len
+%     stairs(one{i,2}, one{i,1});    hold on;
+%     str{i} = sprintf('k = %d, r = %d', k-len+i, r);
+% end
+% legend(str);

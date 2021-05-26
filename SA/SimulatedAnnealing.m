@@ -28,7 +28,7 @@ function [excel, image] = SimulatedAnnealing(SWS, RM, SA)
         
         temperature = temperature * SA.delta;
         
-        [excel, image] = Record(iteration, bestResult, excel, image);
+        [excel, image] = Record(iteration, bestResult, excel, image, 'SimulatedAnnealing');
         image.x(iteration) = iteration;
     end
 end

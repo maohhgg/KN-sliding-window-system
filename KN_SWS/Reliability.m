@@ -26,13 +26,14 @@ function R = Reliability(k, r, m, W, G, C, type)
                 U = DuplicateU(U, r);
             end
             [row, col] = size(U);
-            for i = 1:row                           % 第一组开始计算 
-                WValue = W(1, 2);
-                if rand() <= W(1, 1)
-                    WValue = W(2, 2);
+            for i = 1:row                           % 第一组开始计算
+                W_ = W(1, 2);GR = W(1, 1);
+                if rand() <= W(2, 1)
+                    W_ = W(2, 2);GR = W(2, 1);
                 end
-                if sum(U(i, 1:col-2)) < WValue
+                if sum(U(i, 1:col-2)) < W_
                     U(i, col) = U(i, col) + 1;
+                    U(i, col-1) = U(i, col-1) * GR;
                 end
             end
         end  

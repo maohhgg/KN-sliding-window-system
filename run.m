@@ -32,14 +32,15 @@ SWS.W		= [0.2 40; 0.8 45];
 SWS.type	= 'even';        % system type  even/uneven
 
 %%% genetic algorithm configuration. (GA)
+maxIteration = 450;
 GA.populationSize	= 25;             % population size
-GA.maxIteration		= 450;            % maximal number of iteration
+GA.maxIteration		= maxIteration;   % maximal number of iteration
 GA.crossoverRate	= 0.8;
 GA.mutationRate		= 0.2;
 
-Config.GA 			= GA;
+Config.GA           = GA;
 Algorithm.GA		= @GeneticAlgorithm;
-claer GA;
+clear GA;
 
 %%% Simulated Annealing algorithm configuration.
 SA.initialTemp		= 100;             % initial temperature
@@ -47,29 +48,29 @@ SA.miniTemp			= 0.1^2;           % lower bound of temperature
 SA.maxLoop			= 25;              % number of iterations
 SA.delta			= 0.98;            % temperature drop rate
 
-Config.SA 			= SA;
-Algorithm.SA		= @SimulatedAnnealing;
+%Config.SA          = SA;
+%Algorithm.SA		= @SimulatedAnnealing;
 clear SA;
 
 %%% Tabu Search algorithm configuration. (TS)         
-TS.neighbourSize    = 25;						% neighbour size
-TS.tabuSize         = 20;						% tabu talbe size
-TS.maxIteration     = Config.GA.maxIteration; 	% maximal number of iteration
+TS.neighbourSize    = 25;				% neighbour size
+TS.tabuSize         = 20;				% tabu talbe size
+TS.maxIteration     = maxIteration; 	% maximal number of iteration
 
 Config.TS           = TS;
 Algorithm.TS        = @TabuSearch;
 clear TS;
 
 %%% Particle Swarm Optimization algorithm configuration (PSO)
-PSO.populationSize  = 25;              % population size
-PSO.maxIteration    = Config.GA.maxIteration; 	% maximal number of iteration
+PSO.populationSize  = 25;               % population size
+PSO.maxIteration    = maxIteration;     % maximal number of iteration
 PSO.limit           = [0, SWS.m * RM.maxReplacementInterval]; % Populations of upper and lower boundary values
 PSO.speedLimit      = [-1, 1]; 
 PSO.learningFactor  = [1.49445, 1.49445];   % learning factor
 PSO.inertness       = 0.8;                  % %w = omega      
 
-Config.PSO          = PSO;
-Algorithm.PSO       = @ParticleSwarmOptimization;
+%Config.PSO          = PSO;
+%Algorithm.PSO       = @ParticleSwarmOptimization;
 clear PSO;
 
 names = fieldnames(Config);

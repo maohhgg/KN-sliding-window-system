@@ -1,6 +1,6 @@
-function [excel, image] = Record(i, result, excel, image)
+function [excel, image] = Record(i, result, excel, image, flag)
 
-    fprintf('\tgeneration: %d\n', i);
+    fprintf('\t%s generation: %d\n', flag, i);
     fprintf('\tWhen %s, get the best individual', join(string(result.position)));
     fprintf('cost = %04.0f R = %04.4f \n', result.fitness, result.availability);
     

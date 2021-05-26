@@ -31,6 +31,6 @@ function [excel, image] = TabuSearch(SWS, RM, TS)
         tabuList(i, :) = bestCandidate.individual;
         i = i + 1;
          
-        [excel, image] = Record(iteration, bestCandidate, excel, image);
+        [excel, image] = Record(iteration, bestCandidate, excel, image, 'TabuSearch');
     end
 end

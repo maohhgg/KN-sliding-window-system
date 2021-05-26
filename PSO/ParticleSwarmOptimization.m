@@ -35,6 +35,6 @@ function [excel, image] = ParticleSwarmOptimization(SWS, RM, PSO)
              globalBest = bestResult;
         end
 
-        [excel, image] = Record(iteration, bestResult, excel, image);
+        [excel, image] = Record(iteration, bestResult, excel, image, 'ParticleSwarmOptimization');
     end
 end

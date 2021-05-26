@@ -1,8 +1,8 @@
-function [excel, image] = RecordLog(iteration, fitness, index, best, excel, image)
+function [excel, image] = RecordLog(iteration, fitness, index, best, excel, image, flag)
 
         global pop;
         
-        fprintf('\tgeneration: %d\n', iteration);
+        fprintf('\t%s generation: %d\n', flag, iteration);
         fprintf('\tWhen %s, get the best individual', join(string(best.V)));
         fprintf('\tcost = %04.0f, R = %04.4f \n', best.fitness, best.systemAvailability);
     
